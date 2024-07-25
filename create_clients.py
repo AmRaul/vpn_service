@@ -10,7 +10,7 @@ def generate_vpn(username):
         process1 = subprocess.run(first_command, input=username, stdout=subprocess.PIPE,
                                   stderr=subprocess.PIPE, text=True, shell=True, check=True)
 
-        # Если команда завершилась успешно, возвращаем True
+        
         return process1.returncode == 0
 
     except subprocess.CalledProcessError as e:
@@ -19,12 +19,14 @@ def generate_vpn(username):
         return False
 
 
+
+
 def create_qrcode(username):
     qr = qrcode.QRCode(
-        version=10,  # Размер QR-кода (1 - самый маленький, 40 - самый большой)
-        error_correction=qrcode.constants.ERROR_CORRECT_L,  # Уровень коррекции ошибок: L (7%), M (15%), Q (25%), H (30%)
-        box_size=10,  # Размер одного модуля QR-кода в пикселях
-        border=4,  # Количество белых модулей вокруг QR-кода
+        version=10,  
+        error_correction=qrcode.constants.ERROR_CORRECT_L,  
+        box_size=10,  
+        border=4,  
     )
 
     file_path = f"/home/minima/configs/{username}.conf"
@@ -36,7 +38,7 @@ def create_qrcode(username):
 
     img = qr.make_image(fill_color="black", back_color="white")
 
-    # Сохраните изображение QR-кода
+    
     img.save(f"/var/www/html/qrcode/{username}.png")
 
 
@@ -55,8 +57,11 @@ def on_vpn(username):
     try:
         # Подавляем запрос на подтверждение и автоматически соглашаемся (Y)
         subprocess.check_output(f"echo 'Y' | {command}", shell=True, text=True)
-    except subprocess.CalledProcessError as e:
-        print("Error:", e)
+        output = username + ' - Enable'
+        return output
+    except subprocess.CalledProcessError:
+        e = 'Error'
+        return e
 
 
 def change_date(username, pay_date):
