@@ -124,7 +124,7 @@ def create_keys(user_id: str = Query(..., title="User ID"),
         raise HTTPException(status_code=401, detail="Unauthorized")
     
     requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
-    api_url = 'https://94.131.111.180:52836/72K-DmU42_tjEafyx5m_Jg'
+    api_url = '*****'
     
     # Создание ключа
     response = requests.post(f'{api_url}/access-keys/', verify=False)
@@ -149,7 +149,7 @@ def response_key(user_id: str = Query(..., title="User ID"),
     if not (auth_login == credentials.username and credentials.password == auth_pass):
         raise HTTPException(status_code=401, detail="Unauthorized")
     requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
-    api_url = 'https://94.131.111.180:52836/72K-DmU42_tjEafyx5m_Jg'
+    api_url = '*****'
 
     response = requests.get(f'{api_url}/access-keys/', verify=False)
 
@@ -172,8 +172,8 @@ def limit_off(user_id: str = Query(..., title="User ID"),
 
     requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
-    api_url = 'https://94.131.111.180:52836/72K-DmU42_tjEafyx5m_Jg/access-keys/{id}/data-limit'
-    api_url_data = 'https://94.131.111.180:52836/72K-DmU42_tjEafyx5m_Jg'
+    api_url = '*****/access-keys/{id}/data-limit'
+    api_url_data = '*******'
 
     response = requests.get(f'{api_url_data}/access-keys/', verify=False)
     
@@ -210,8 +210,8 @@ def limit_delete(user_id: str = Query(..., title="User ID"),
 
     requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
-    api_url = 'https://94.131.111.180:52836/72K-DmU42_tjEafyx5m_Jg/access-keys/{id}/data-limit'
-    api_url_data = 'https://94.131.111.180:52836/72K-DmU42_tjEafyx5m_Jg'
+    api_url = '*****/access-keys/{id}/data-limit'
+    api_url_data = '*****'
 
     response = requests.get(f'{api_url_data}/access-keys/', verify=False)
     
